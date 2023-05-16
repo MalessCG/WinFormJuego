@@ -88,9 +88,18 @@ namespace WinFormPersonas
             {
                 Munieco muniecoSeleccionado = (Munieco)lstMuñecos.SelectedItem;
 
-                int indice = lstMuñecos.Items.IndexOf(muniecoSeleccionado);
-                muniecoSeleccionado.Comer();
-                lstMuñecos.Items[indice] = muniecoSeleccionado;
+                if (muniecoSeleccionado.Energia < 100)
+                {
+                    int indice = lstMuñecos.Items.IndexOf(muniecoSeleccionado);
+                    muniecoSeleccionado.Comer();
+                    lstMuñecos.Items[indice] = muniecoSeleccionado;
+                    if (muniecoSeleccionado.Energia > 100)
+                    {
+                        muniecoSeleccionado.Energia = 100;
+                        lstMuñecos.Items[indice] = muniecoSeleccionado;
+                    }
+                }
+                
 
             }
         }
